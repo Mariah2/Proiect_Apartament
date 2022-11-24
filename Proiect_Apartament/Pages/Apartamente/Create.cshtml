@@ -1,0 +1,67 @@
+﻿@page
+@model Proiect_Apartament.Pages.Apartamente.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Apartament</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Apartament.Nume" class="control-label"></label>
+                <input asp-for="Apartament.Nume" class="form-control" />
+                <span asp-validation-for="Apartament.Nume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartament.ProprietarID" class="control-label">Nume Proprietar</label>
+                <select asp-for="Apartament.ProprietarID" class="form-control" asp-items="ViewBag.ProprietarID"></select>
+                <span asp-validation-for="Apartament.ProprietarID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apartament.Pret" class="control-label"></label>
+                <input asp-for="Apartament.Pret" class="form-control" />
+                <span asp-validation-for="Apartament.Pret" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <div class="table">
+                <table>
+                    <tr>
+                        @{
+                        int cnt = 0;
+                        foreach (var cat in Model.DataCategorieiAsignateLista)
+                        {
+                            if (cnt++ % 3 == 0)
+                        {
+                        @:</tr><tr>
+                    }
+                    @:<td>
+                    <input type="checkbox" name="categorieSelectata" value="@cat.CategorieID"
+                    @(Html.Raw(cat.Asignat ? "checked=\"checked\"" : "")) />
+                    @cat.CategorieID @: @cat.Nume
+                    @:</td>
+                    }
+                    @:</tr>
+                    }
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

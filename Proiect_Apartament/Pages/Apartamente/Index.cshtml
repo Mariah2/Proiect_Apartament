@@ -1,0 +1,82 @@
+﻿@page "/"
+@model Proiect_Apartament.Pages.Apartamente.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Gaseste dupa nume apartament / proprietar:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NumeSort">
+                @Html.DisplayNameFor(model => model.Apartament[0].Nume)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ProprietarSort">
+                @Html.DisplayNameFor(model => model.Apartament[0].Proprietar.NumeProprietar)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apartament[0].Pret)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apartament[0].CategoriiApartament)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ApartamentData.Apartamente) {
+            string selectedRow = "";
+            if (item.ID == Model.ApartamentID)
+            {
+                selectedRow = "table-success";
+            }
+         <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proprietar.NumeProprietar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pret)
+            </td>
+                <td>
+                @{
+                    foreach (var categorie in item.CategoriiApartament)
+                    {
+                        //@categorie.Categorie.ID @: 
+                        @categorie.Categorie.NumeCategorie
+                        <br />
+                    }
+                }
+                </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
