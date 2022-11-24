@@ -19,5 +19,9 @@ namespace Proiect_Apartament.Data
         public DbSet<Proiect_Apartament.Models.Proprietar> Proprietar { get; set; }
 
         public DbSet<Proiect_Apartament.Models.Categorie> Categorie { get; set; }
+
+        public DbSet<Proiect_Apartament.Models.Member> Member { get; set; }
+
+        public DbSet<Proiect_Apartament.Models.Inchiriere> Inchiriere { get; set; }
     }
 }
