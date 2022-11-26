@@ -12,5 +12,8 @@ namespace Proiect_Apartament.Models
 
         [DataType(DataType.Date)]
         public DateTime CheckoutDate { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime CheckinDate { get; set; }
     }
 }

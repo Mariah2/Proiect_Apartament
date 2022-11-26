@@ -7,6 +7,21 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Proiect_Apartament.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="../Pages/Shared/_Layout.cshtml.css" asp-append-version="true" type="text/css" />
+    <style>
+        .nav-link {
+            color: black !important;
+            font-weight: 300 !important;
+        }
+
+        .nav-item:hover {
+            background-color: cadetblue;
+        }
+
+        .nav-item:hover .nav-link {
+            color: white !important;
+        }
+    </style>
 </head>
 <body style="background-color:black">
     <header>
@@ -21,20 +36,19 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        <img src="~/poze/icons8-apartments-64.png" style="width:30px; height:30px; position:center" />
+                        <li class="nav-item" style="align-content:flex-start">
                             <a class="nav-link" style="color:black" asp-area="" asp-page="/Apartamente/Index">Apartamente</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color:black" asp-area="" asp-page="/Proprietari/Index">Proprietari</a>
+                        <img src="~/poze/icons8-landlord-50.png" style="width:30px; height:30px; position:centerwidth:30px; height:30px; position:center" />
+                        <li class="nav-item"> 
+                            <a class="nav-link" asp-area="" asp-page="/Proprietari/Index">Proprietari</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color:black" asp-area="" asp-page="/Categorii/Index">Categorii</a>
+                            <a class="nav-link" asp-area="" asp-page="/Categorii/Index">Categorii</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color:black" asp-area="" asp-page="/Members/Index">Membrii</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="color:black" asp-area="" asp-page="/Inchirieri/Index">Inchirieri</a>
+                            <a class="nav-link" asp-area="" asp-page="/Inchirieri/Index">Inchirieri</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

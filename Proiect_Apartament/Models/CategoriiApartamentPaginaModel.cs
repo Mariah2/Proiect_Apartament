@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Proiect_Apartament.Data;
+using System.Net;
+
 namespace Proiect_Apartament.Models
 {
     public class CategoriiApartamentPaginaModel : PageModel
@@ -21,41 +24,38 @@ namespace Proiect_Apartament.Models
                 });
             }
         }
-        public void UpdateCategoriiApartamente(Proiect_ApartamentContext context,
-        string[] categorieSelectata, Apartament apartamentUpdatat)
+        public async Task UpdateCategoriiApartamente(Proiect_ApartamentContext context, string[] categoriiSelectate, int apartamentId)
         {
-            if (categorieSelectata == null)
+            var categoriiApartament = await context.Set<CategorieApartament>().Where(ca => ca.ApartamentID == apartamentId).ToListAsync();
+
+            if (categoriiSelectate is null)
             {
-                apartamentUpdatat.CategoriiApartament = new List<CategorieApartament>();
+                foreach (var categorieApartament in categoriiApartament)
+                {
+                    context.Set<CategorieApartament>().Remove(categorieApartament).State = EntityState.Deleted;
+                }
+
                 return;
             }
-            var CategorieSelectataHS = new HashSet<string>(categorieSelectata);
-            var apartamentCategorii = new HashSet<int>
-            (apartamentUpdatat.CategoriiApartament.Select(c => c.Categorie.ID));
-            foreach (var cat in context.Categorie)
+
+            var categoriiDeSters = categoriiApartament.Where(ca => !categoriiSelectate.Contains(ca.CategorieID.ToString()));
+
+            foreach (var categorieApartament in categoriiDeSters)
             {
-                if (CategorieSelectataHS.Contains(cat.ID.ToString()))
+                context.Set<CategorieApartament>().Remove(categorieApartament).State = EntityState.Deleted;
+            }
+
+            foreach (var categorieId in categoriiSelectate)
+            {
+                int parsatCategorieId = int.Parse(categorieId);
+
+                if (categoriiApartament.Find(ca => ca.CategorieID == parsatCategorieId) is null)
                 {
-                    if (!apartamentCategorii.Contains(cat.ID))
+                    context.Set<CategorieApartament>().Add(new CategorieApartament
                     {
-                        apartamentUpdatat.CategoriiApartament.Add(
-                        new CategorieApartament
-                        {
-                            ApartamentID = apartamentUpdatat.ID,
-                            CategorieID = cat.ID
-                        });
-                    }
-                }
-                else
-                {
-                    if (apartamentCategorii.Contains(cat.ID))
-                    {
-                        CategorieApartament courseToRemove
-                        = apartamentUpdatat
-                        .CategoriiApartament
-                        .SingleOrDefault(i => i.CategorieID == cat.ID);
-                        context.Remove(courseToRemove);
-                    }
+                        ApartamentID = apartamentId,
+                        CategorieID = parsatCategorieId
+                    }).State = EntityState.Added;
                 }
             }
         }

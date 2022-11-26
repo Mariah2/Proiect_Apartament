@@ -34,7 +34,7 @@ namespace Proiect_Apartament.Pages.Apartamente
                 return NotFound();
             }
 
-            Apartament =  await _context.Apartament
+            var apartament =  await _context.Apartament
                 .Include(b => b.Proprietar)
                 .Include(b => b.CategoriiApartament)
                 .ThenInclude(b => b.Categorie)
@@ -43,20 +43,23 @@ namespace Proiect_Apartament.Pages.Apartamente
 
 
 
-            if (Apartament == null)
+            if (apartament == null)
             {
                 return NotFound();
             }
-            PopulateAssignedCategoryData(_context, Apartament);
 
-            Apartament = Apartament;
+            PopulateAssignedCategoryData(_context, apartament);
+
+            Apartament = apartament;
+
             ViewData["ProprietarID"] = new SelectList(_context.Set<Proprietar>(), "ID", "NumeProprietar");
+
             return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync(int? id, string[] categorieSelectata)
+        public async Task<IActionResult> OnPostAsync(int? id, string[] categoriiSelectate)
         {
             /*if (!ModelState.IsValid)
             {
@@ -94,7 +97,18 @@ namespace Proiect_Apartament.Pages.Apartamente
             {
                 return NotFound();
             }
-            var apartamentUpdatat = await _context.Apartament
+
+            _context.Update(Apartament).State = EntityState.Modified;
+
+            await UpdateCategoriiApartamente(_context, categoriiSelectate, Apartament.ID);
+
+            await _context.SaveChangesAsync();
+
+            PopulateAssignedCategoryData(_context, Apartament);
+
+            return RedirectToPage("./Index");
+
+            /*var apartamentUpdatat = await _context.Apartament
             .Include(i => i.Proprietar)
             .Include(i => i.CategoriiApartament)
             .ThenInclude(i => i.Categorie)
@@ -109,15 +123,15 @@ namespace Proiect_Apartament.Pages.Apartamente
             i => i.Nume, i => i.Proprietar,
             i => i.Pret))
             {
-                UpdateCategoriiApartamente(_context, categorieSelectata, apartamentUpdatat);
+                UpdateCategoriiApartamente(_context, categoriiSelectate, apartamentUpdatat);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
             //Apelam UpdateBookCategories pentru a aplica informatiile din checkboxuri la entitatea Books care
             //este editata
-            UpdateCategoriiApartamente(_context, categorieSelectata, apartamentUpdatat);
+            UpdateCategoriiApartamente(_context, categoriiSelectate, apartamentUpdatat);
             PopulateAssignedCategoryData(_context, apartamentUpdatat);
-            return Page();
+            return Page();*/
         }
     }
 

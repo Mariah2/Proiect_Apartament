@@ -23,11 +23,17 @@ a {
   border-color: #1861ac;
 }
 .nav-item:hover {
-    background-color:cadetblue;
+    background-color: cadetblue; 
+    color: white;
 }
+
 .nav-link {
-    color:black;
-    font-weight:300;
+    color: black;
+    font-weight: 300;
+}
+
+.nav-link:hover {
+    color: white;
 }
 
 .border-top {

@@ -22,9 +22,14 @@
                 <select asp-for="Inchiriere.ApartamentID" class ="form-control" asp-items="ViewBag.ApartamentID"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Inchiriere.CheckoutDate" class="control-label">Checkout</label>
+                <label asp-for="Inchiriere.CheckoutDate" class="control-label">Checkout Date</label>
                 <input asp-for="Inchiriere.CheckoutDate" class="form-control" />
                 <span asp-validation-for="Inchiriere.CheckoutDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Inchiriere.CheckinDate" class="control-label">Checkin Date</label>
+                <input asp-for="Inchiriere.CheckinDate" class="form-control" />
+                <span asp-validation-for="Inchiriere.CheckinDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

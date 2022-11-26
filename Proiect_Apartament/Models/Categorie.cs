@@ -4,6 +4,11 @@
     {
         public int ID { get; set; }
         public string NumeCategorie { get; set; }
-        public ICollection<CategorieApartament>? CategorieApartament { get; set; }
+        public ICollection<CategorieApartament> CategoriiApartament { get; set; }
+
+        public Categorie()
+        {
+            CategoriiApartament = new HashSet<CategorieApartament>();
+        }
     }
 }
