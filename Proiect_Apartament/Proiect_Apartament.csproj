@@ -8,11 +8,6 @@
 
   <ItemGroup>
     <Compile Remove="Models\CategorieLocuinta.cs" />
-    <Compile Remove="Pages\Index.cshtml.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Pages\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

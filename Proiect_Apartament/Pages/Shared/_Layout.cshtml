@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Proiect_Apartament.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body style="background-color:black">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Apartamente/Index">Apartamente</a>
+                <!--<a class="navbar-brand" asp-area="" asp-page="/Index">Apartamente</a>-->
                 <!--<a class="navbar-brand" asp-area="" asp-page="/Proprietari/Index">Proprietari</a>-->
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -22,16 +22,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Proprietari/Index">Proprietari</a>
+                            <a class="nav-link" style="color:black" asp-area="" asp-page="/Apartamente/Index">Apartamente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Categorii/Index">Categorii</a>
+                            <a class="nav-link" style="color:black" asp-area="" asp-page="/Proprietari/Index">Proprietari</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Members/Index">Membrii</a>
+                            <a class="nav-link" style="color:black" asp-area="" asp-page="/Categorii/Index">Categorii</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Inchirieri/Index">Inchirieri</a>
+                            <a class="nav-link" style="color:black" asp-area="" asp-page="/Members/Index">Membrii</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:black" asp-area="" asp-page="/Inchirieri/Index">Inchirieri</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -40,15 +43,16 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Proiect_Apartament - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer class="footer text-muted" style="background-color:cadetblue" >
+        <div class="container" style="color:white; font-weight:bold">
+            2022 - Apartamente de inchiriat - <a asp-area="" asp-page="/Privacy" style="color:white; text-decoration:none">Privacy</a>
         </div>
     </footer>
 

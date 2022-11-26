@@ -22,9 +22,16 @@ a {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+.nav-item:hover {
+    background-color:cadetblue;
+}
+.nav-link {
+    color:black;
+    font-weight:300;
+}
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
