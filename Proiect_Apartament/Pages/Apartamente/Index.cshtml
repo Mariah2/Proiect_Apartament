@@ -18,16 +18,16 @@
     </div>
 </form>
 
-<table class="table">
+<table class="table" style="background-color: white">
     <thead>
         <tr>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.NumeSort">
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NumeSort" style="text-decoration: none; color:black">
                 @Html.DisplayNameFor(model => model.Apartament[0].Nume)
                 </a>
             </th>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.ProprietarSort">
+                <a asp-page="./Index" asp-route-sortOrder="@Model.ProprietarSort" style="text-decoration: none; color: black">
                 @Html.DisplayNameFor(model => model.Apartament[0].Proprietar.NumeProprietar)
                 </a>
             </th>

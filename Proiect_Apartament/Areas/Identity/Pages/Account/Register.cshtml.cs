@@ -83,10 +83,28 @@ namespace Proiect_Apartament.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
+            [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage ="Numele trebuie sa inceapa cu majuscula (ex. Ana sau Ana Maria sau AnaMaria")]
+            [Display(Name = "Nume")]
+            public string Nume { get; set; }
+
+            [Required]
+            [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Prenumele trebuie sa inceapa cu majuscula (ex. Ana sau Ana Maria sau AnaMaria")]
+            [Display(Name = "Prenume")]
+            public string Prenume { get; set; }
+
+            [Required]
+            [Display(Name = "Adresa")]
+            public string Adresa { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
+            [Required]
+            [RegularExpression(@"^\(?([0]{1})\)?([0-9]{3})?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123' si sa inceapa cu 0!")]
+            [Display(Name = "Telefon")]
+            public string? Telefon { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -128,6 +146,10 @@ namespace Proiect_Apartament.Areas.Identity.Pages.Account
             var result = await _userManager.CreateAsync(user,
            Input.Password);
             Member.Email = Input.Email;
+            Member.Nume = Input.Nume;
+            Member.Prenume = Input.Prenume;
+            Member.Adresa = Input.Adresa;
+            Member.Telefon = Input.Telefon;
             _context.Member.Add(Member);
             await _context.SaveChangesAsync();
             if (result.Succeeded)

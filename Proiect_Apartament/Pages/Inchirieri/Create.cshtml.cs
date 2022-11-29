@@ -28,11 +28,17 @@ namespace Proiect_Apartament.Pages.Inchirieri
                     {
                         x.ID,
                         ApartamentNume = x.Nume + " - " + x.Proprietar.NumeProprietar
- });
+                    });
 
+            var membruDetalii = _context.Member
+                .Select(x => new
+                {
+                    x.ID,
+                    DetaliiMembru = x.Nume + " " + x.Prenume
+                });
 
             ViewData["ApartamentID"] = new SelectList(apartamentLista, "ID", "ApartamentNume");
-        ViewData["MemberID"] = new SelectList(_context.Member, "ID", "Nume");
+            ViewData["MemberID"] = new SelectList(membruDetalii, "ID", "DetaliiMembru");
             return Page();
         }
 
