@@ -16,7 +16,7 @@ namespace Proiect_Apartament.Models
         public string? Prenume { get; set; }
         [StringLength(70)]
         public string? Adresa { get; set; }
-        public string Email { get; set; }
+        public string? Email { get; set; }
         [RegularExpression(@"^\(?([0]{1})\)?([0-9]{3})?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123' si sa inceapa cu 0!")]
         public string? Telefon { get; set; }
         [Display(Name = "Nume")]

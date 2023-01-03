@@ -23,11 +23,12 @@
                 @Html.DisplayNameFor(model => model.Inchiriere[0].Apartament.Proprietar)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Inchiriere[0].CheckoutDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Inchiriere[0].CheckinDate)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Inchiriere[0].CheckoutDate)
+            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -43,12 +44,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Apartament.Proprietar.NumeProprietar)
                 </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckoutDate)
-            </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CheckinDate)
                 </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckoutDate)
+            </td>
+                
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
