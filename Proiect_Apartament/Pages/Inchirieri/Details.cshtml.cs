@@ -28,7 +28,10 @@ namespace Proiect_Apartament.Pages.Inchirieri
                 return NotFound();
             }
 
-            var inchiriere = await _context.Inchiriere.FirstOrDefaultAsync(m => m.ID == id);
+            var inchiriere = await _context.Inchiriere
+                .Include(m => m.Member)
+                .Include(a => a.Apartament)
+                .FirstOrDefaultAsync(i => i.ID == id);
             if (inchiriere == null)
             {
                 return NotFound();

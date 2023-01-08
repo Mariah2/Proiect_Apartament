@@ -7,7 +7,7 @@ namespace Proiect_Apartament.Models
     {
         public int ID { get; set; }
 
-        [Display(Name = "Nume Apartament")]
+        [Display(Name = "Apartament")]
         public string Nume { get; set; } = string.Empty;
 
         //public string Proprietar { get; set; }
@@ -16,8 +16,12 @@ namespace Proiect_Apartament.Models
 
         [Column(TypeName = "decimal(6,2)")]
         [Range(0.01, 500)]
+        [Display(Name = "Pret/noapte")]
+
 
         public decimal Pret { get; set; }
+
+        [Display(Name = "Categorie")]
 
         public ICollection<CategorieApartament>? CategoriiApartament { get; set; }
 
